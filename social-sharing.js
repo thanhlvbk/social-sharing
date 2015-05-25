@@ -72,6 +72,19 @@ SOCIAL_SHARING = {};
         });
         return deferred.promise;
     };
+    self.shareViaEmail = function (message, subject, toArr, ccArr, bccArr, fileArr) {
+        var deferred = RSVP.defer();
+        toArr = toArr || null;
+        ccArr = ccArr || null;
+        bccArr = bccArr || null;
+        fileArr = fileArr || null;
+        window.plugins.socialsharing.shareViaEmail(message, subject, toArr, ccArr, bccArr, fileArr, function () {
+            deferred.resolve(true);
+        }, function () {
+            deferred.reject(false);
+        });
+        return deferred.promise;
+    };
     self.available = function () {
         var deferred = RSVP.defer();
         window.plugins.socialsharing.available(function (isAvailable) {
