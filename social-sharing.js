@@ -52,6 +52,17 @@ SOCIAL_SHARING = {};
         });
         return deferred.promise;
     };
+    self.shareViaFacebookWithPasteMessageHint = function (message, file, link, pasteMessageHint) {
+        var deferred = RSVP.defer();
+        file = file || null;
+        link = link || null;
+        window.plugins.socialsharing.shareViaFacebookWithPasteMessageHint(message, file, link, pasteMessageHint, function () {
+            deferred.resolve(true);
+        }, function () {
+            deferred.reject(false);
+        });
+        return deferred.promise;
+    };
     self.shareViaSMS = function (message, commaSeparatedPhoneNumbers) {
         var deferred = RSVP.defer();
         window.plugins.socialsharing.shareViaSMS(message, commaSeparatedPhoneNumbers, function () {
